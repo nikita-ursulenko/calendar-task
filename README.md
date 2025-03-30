@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 📅 Календарь планирования
 
-First, run the development server:
+Веб-приложение для планирования, организации и управления событиями и расписанием. Проект выполнен в рамках производственной практики (Facultatea Tehnologii Informaționale, ULIM).
+
+## ✨ Основные возможности
+
+- Календарь с режимами: день, неделя, месяц
+- Создание, редактирование и удаление событий
+- Система пользователей и групп
+- Панель администратора для фильтрации событий по пользователям
+- Поддержка аутентификации через Google, GitHub и логин/пароль
+- Разграничение прав доступа
+- Защищенное хранение данных
+
+## ⚙️ Используемые технологии
+
+- Next.js
+- React
+- TypeScript
+- Prisma ORM
+- SQLite
+- NextAuth.js
+- Tailwind CSS
+
+## 📂 Структура проекта
+
+- `/src` — код приложения
+- `/prisma` — схема базы данных
+- `/public` — статические файлы
+- `next.config.ts` — конфигурация Next.js
+- `tailwind.config.js` — конфигурация стилей
+
+## ✅ Установка и запуск проекта
+
+### Требования:
+- Node.js >= 18.x
+- Yarn или npm
+- SQLite
+
+### Установка:
+
+1. Клонируйте проект:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/nikita-ursulenko/calendar-task.git
+cd calendar-task
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Установите зависимости:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Настройте базу данных и выполните миграции:
 
-## Learn More
+```bash
+npx prisma migrate dev --name init
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Запустите проект в режиме разработки:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Перейдите в браузер:
 
-## Deploy on Vercel
+```
+http://localhost:3000
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Автор
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ursulenco Nichita  
+Facultatea Tehnologii Informaționale, ULIM  
+2025
+
+## 🔗 Ссылка на GitHub
+
+[Перейти к проекту на GitHub](https://github.com/nikita-ursulenko/calendar-task)
