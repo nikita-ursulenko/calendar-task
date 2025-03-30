@@ -1,0 +1,109 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String?         @unique
+  emailVerified DateTime?
+  image         String?
+  role          String          @default("user") // "admin", "manager", "user"
+  group         Group?          @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  groupId       String?
+  githubId      String?         @unique
+  googleId      String?         @unique
+  accounts      Account[]
+  sessions      Session[]
+  Authenticator Authenticator[]
+  events        Event[] // Добавили связь с событиями
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Group {
+  id        String   @id @default(cuid()) // 🔹 Уникальный `groupId`
+  name      String // 🔹 Название группы (например, "Клиника №1")
+  adminId   String // 🔹 ID пользователя-админа (создателя группы)
+  users     User[] // 🔹 Связь с пользователями в этой группе
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                String   @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  hashedPassword    String? // 🔐 Добавим это
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+// Модель для хранения событий
+model Event {
+  id        String   @id @default(cuid())
+  firstName String // Имя клиента
+  lastName  String // Фамилия клиента
+  procedure String // Процедура, выполняемая пользователем
+  startTime DateTime // Начало события
+  endTime   DateTime // Конец события (считаем на основе длительности)
+  duration  Int // Время в минутах
+  userId    String // ID пользователя, который выполняет процедуру
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
