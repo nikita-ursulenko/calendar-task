@@ -1,82 +1,77 @@
+# 📅 Calendar Task — Next.js App
 
-# 📅 Календарь планирования
+This project is a **calendar planning web application** built with [Next.js](https://nextjs.org) and bootstrapped using [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Веб-приложение для планирования, организации и управления событиями и расписанием. Проект выполнен в рамках производственной практики (Facultatea Tehnologii Informaționale, ULIM).
+---
 
-## ✨ Основные возможности
+## 🚀 Getting Started
 
-- Календарь с режимами: день, неделя, месяц
-- Создание, редактирование и удаление событий
-- Система пользователей и групп
-- Панель администратора для фильтрации событий по пользователям
-- Поддержка аутентификации через Google, GitHub и логин/пароль
-- Разграничение прав доступа
-- Защищенное хранение данных
-
-## ⚙️ Используемые технологии
-
-- Next.js
-- React
-- TypeScript
-- Prisma ORM
-- SQLite
-- NextAuth.js
-- Tailwind CSS
-
-## 📂 Структура проекта
-
-- `/src` — код приложения
-- `/prisma` — схема базы данных
-- `/public` — статические файлы
-- `next.config.ts` — конфигурация Next.js
-- `tailwind.config.js` — конфигурация стилей
-
-## ✅ Установка и запуск проекта
-
-### Требования:
-- Node.js >= 18.x
-- Yarn или npm
-- SQLite
-
-### Установка:
-
-1. Клонируйте проект:
+### 1. Install dependencies
 
 ```bash
-git clone https://github.com/nikita-ursulenko/calendar-task.git
-cd calendar-task
-```
-
-2. Установите зависимости:
-
-```bash
+npm install
+# or
 yarn install
+# or
+pnpm install
+# or
+bun install
 ```
 
-3. Настройте базу данных и выполните миграции:
+### 2. Run the development server
 
 ```bash
-npx prisma migrate dev --name init
-```
-
-4. Запустите проект в режиме разработки:
-
-```bash
+npm run dev
+# or
 yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-5. Перейдите в браузер:
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
 
+The page will auto-update as you edit the source code. The main entry point is `app/page.tsx`.
+
+---
+
+## ⚙️ Environment Variables
+
+Before starting, you need to create a `.env.local` file in the root of your project and add the following environment variables:
+
+```env
+DATABASE_URL="file:./dev.db"
+
+GITHUB_CLIENT_ID="your_github_client_id"
+GITHUB_CLIENT_SECRET="your_github_client_secret"
+
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your_random_generated_secret"
+
+GOOGLE_CLIENT_ID="your_google_client_id"
+GOOGLE_CLIENT_SECRET="your_google_client_secret"
 ```
-http://localhost:3000
-```
 
-## 👨‍💻 Автор
+> ⚠️ **Do not commit your real credentials to version control.**  
+> The values shown above are only examples — replace them with your own.
 
-Ursulenco Nichita  
-Facultatea Tehnologii Informaționale, ULIM  
-2025
+---
 
-## 🔗 Ссылка на GitHub
+## 📚 Learn More
 
-[Перейти к проекту на GitHub](https://github.com/nikita-ursulenko/calendar-task)
+To learn more about Next.js, check out the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) — explore Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) — an interactive tutorial.
+- [NextAuth.js Documentation](https://next-auth.js.org/) — authentication for Next.js apps.
+
+---
+
+## ☁️ Deployment
+
+The easiest way to deploy your Next.js app is to use [Vercel](https://vercel.com), created by the team behind Next.js.
+
+For more information, see the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+
+---
